@@ -7,7 +7,7 @@ import moment from "moment-timezone";
 
 import "./index.css";
 
-import { css, jsx } from '@emotion/react';
+// import { css, jsx } from '@emotion/react';
 
 import { Popper } from 'react-popper';
 
@@ -51,9 +51,9 @@ export default class Tooltip extends React.Component {
   render() {
     let description;
     if (this.props.description) {
-      description = <div className="details description">
-        <div css={{ paddingRight: "10px" }}><Subject fill="currentColor" /></div>
-        <div css={{ overflowWrap: "break-word", maxWidth: "calc(100% - 28px)" }}
+      description = <div className="details-descriptions">
+        <div className="details-descriptions-one"><Subject fill="currentColor" /></div>
+        <div className="details-descriptions-two"
           onMouseDown={e => {if (e.target.nodeName == 'A') {e.preventDefault()}}} 
           dangerouslySetInnerHTML={{__html: this.props.description}} />
       </div>;
@@ -63,9 +63,9 @@ export default class Tooltip extends React.Component {
 
     let location;
     if (this.props.location) {
-      location = <div className="details location">
-        <div css={{ paddingRight: "10px", display: "flex", alignItems: "center"}}><Place fill="currentColor" /></div>
-        <div css={{ overflowWrap: "break-word", maxWidth: "calc(100% - 28px)" }}>{this.props.location}</div>
+      location = <div className="details-locations">
+        <div className="detail-locations-container-one"><Place fill="currentColor" /></div>
+        <div className="detail-locations-container-two">{this.props.location}</div>
       </div>;
     } else {
       location = <div></div>;
@@ -74,7 +74,7 @@ export default class Tooltip extends React.Component {
     let calendarName;
     if (this.props.calendarName) {
       calendarName = <div className="details calendarName">
-        <div css={{ paddingRight: "10px", display: "flex", alignItems: "center" }}><CalendarToday fill="currentColor" /></div>
+        <div className="details-calendar-name-container"><CalendarToday fill="currentColor" /></div>
         <div>{this.props.calendarName}</div>
       </div>;
     } else {
@@ -89,38 +89,19 @@ export default class Tooltip extends React.Component {
             ref={ref}
             style={style}
             data-placement={placement}
-            css={[css`
-              visibility: ${this.props.showTooltip ? "visible" : "hidden"};
-              width: 250px;
-              background: #fff;
-              text-align: left;
-              padding: 5px;
-              border-radius: 6px;
-              color: #51565d;
-              border: 2px solid rgba(81, 86, 93, 0.1);
-              position: absolute;
-              z-index: 1;
-            `, this.props.tooltipStyles]}
+            style={{
+              visibility: this.props.visible ? "visible" : "hidden",
+            }}
           >
-            <div css={{
+            <div style={{
               position: "relative",
             }}>
-              <div css={css`
-                position: absolute;
-                right: 2px;
-                top: -5px;
-                opacity: 0.5;
-                font-size: 24px;
-                &:hover {
-                  cursor: pointer;
-                  opacity: 0.9;
-                }
-              `}
+              <div className="tooltip-inner"
                 onClick={this.props.closeTooltip}
               >
                 &times;
               </div>
-              <h2 className="tooltip-text" css={{marginTop: "0px", paddingTop: "18.675px"}}>{this.props.name}</h2>
+              <h2 className="tooltip-text">{this.props.name}</h2>
               <p className="display-linebreak">
                 { this.state.timeDisplay }
               </p>
@@ -131,7 +112,7 @@ export default class Tooltip extends React.Component {
                 href={this.state.eventURL}
                 target="_blank"
                 onMouseDown={e => e.preventDefault()}
-                css={{
+                style={{
                   fontSize: "13px",
                   tabIndex: -1
                 }}

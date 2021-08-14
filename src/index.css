@@ -2,6 +2,34 @@ html {
   overflow-wrap: inherit;
 }
 
+.tooltip {
+  width: 250px;
+  background: #fff;
+  text-align: left;
+  padding: 5px;
+  border-radius: 6px;
+  color: #51565d;
+  border: 2px solid rgba(81, 86, 93, 0.1);
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip-inner {
+  position: absolute;
+  right: 2px;
+  top: -5px;
+  opacity: 0.5;
+  font-size: 24px;
+  &tooltip-inner:hover {
+    cursor: pointer;
+    opacity: 0.9;
+  }
+}
+
+.tooltip-text {
+  margin-top: 0px;
+  padding-top: 18.675px;
+}
 .unselectable {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -64,7 +92,7 @@ html {
 
 .innerDay {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   width: 100%;
 }
 
@@ -87,6 +115,10 @@ html {
   margin: 1px 0px;
   font-size: 15px;
   height: 26px;
+  position: relative;
+  &:focus {
+    outline: none;
+  }
 }
 
 .below {
@@ -94,13 +126,89 @@ html {
 }
 
 .details {
-  display : flex;
+  display: flex;
   font-size: 14px;
   align-items: center;
   margin-top: 12px;
   margin-bottom: 12px;
 }
 
+.details-descriptions {
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.details-descriptions-container-one {
+  padding-right:  10px;
+}
+
+.details-descriptions-container-two {
+  overflow-wrap: break-word;
+  max-width: calc(100% - 28px);
+}
+
+.details-calendar-name-container {
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.details-locations {
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.details-locations-container-one {
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.details-locations-container-two {
+  overflow-wrap: break-word;
+  max-width: calc(100% - 28px);
+}
+
 .display-linebreak {
   white-space: pre-line;
+}
+
+.ref {
+  border-radius: 3px;
+  width: 100%;
+  &:hover {
+    cursor: pointer;
+    background: rgba(81, 86, 93, 0.1);
+  }
+}
+
+.event-text {
+  color: #51565d;
+  padding: 3px 0px 3px 20px;
+  margin-right: 5px;
+  overflow-x: hidden;
+  white-space: nowrap;
+  position: relative;
+  text-align: left;
+}
+
+.text {
+  position: absolute;
+  top: 5px;
+  left: 2px;
+  color: #4786ff;
+  height: 15px;
+  width: 15px;
+}
+
+.mq {
+  @media (max-width: 599px) {
+    display: none;
+  }
 }

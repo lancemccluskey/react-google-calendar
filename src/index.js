@@ -14,7 +14,7 @@ import MultiEvent from "./multiEvent";
 import { isMultiEvent } from "./utils/helper";
 import { loadCalendarAPI, getEventsList } from "./utils/googleCalendarAPI";
 
-import { css, jsx } from '@emotion/react'
+// import { css, jsx } from '@emotion/react'
 
 import _ from "lodash";
 
@@ -188,13 +188,14 @@ export default class Calendar extends React.Component {
   
   //renders the day of week names
   renderDays() {
-    return this.state.days.map((x, i) => (
+    return this.state.days.map((day, i) => (
       <div
         className="day-name"
         key={"day-of-week-" + i}
-        css={[{ borderColor: "LightGray" }, _.get(this.props.styles, 'day', {})]}
+        // style={{ borderColor: "LightGray" }, _.get(this.props.styles, 'day', {})}
+        style={{ borderColor: "LightGray" }}
       >
-        {x}
+        {day}
       </div>
     ));
   }
@@ -212,7 +213,7 @@ export default class Calendar extends React.Component {
         <div
           className="day"
           key={"empty-day-" + i}
-          css={_.get(this.props.styles, 'day', {})}
+          // style={_.get(this.props.styles, 'day', {})}
         ></div>
       )),
       days.map(x => {
@@ -221,10 +222,10 @@ export default class Calendar extends React.Component {
             <div
               className="day"
               key={"day-" + x}
-              css={[_.get(this.props.styles, 'day', {}), _.get(this.props.styles, 'today', {})]}
+              // style={[_.get(this.props.styles, 'day', {}), _.get(this.props.styles, 'today', {})]}
             >
               <span
-                css={{
+                style={{
                   paddingRight: '6px',
                 }}
               >
@@ -238,10 +239,10 @@ export default class Calendar extends React.Component {
             <div
               className="day"
               key={"day-" + x}
-              css={_.get(this.props.styles, 'day', {})}
+              // style={_.get(this.props.styles, 'day', {})}
             >
               <span
-                css={{
+                style={{
                   paddingRight: '6px',
                 }}
               >
@@ -256,7 +257,7 @@ export default class Calendar extends React.Component {
         <div
           className="day"
           key={"empty-day-2-" + i}
-          css={_.get(this.props.styles, 'day', {})}
+          // style={_.get(this.props.styles, 'day', {})}
         ></div>
       ))
     ];
@@ -527,14 +528,22 @@ export default class Calendar extends React.Component {
     return (
       <div
         className="calendar"
-        css={[{
+        // style={[{
+        //   fontSize: "18px",
+        //   border: "1px solid",
+        //   minWidth: "300px",
+        //   position: "relative",
+        //   borderColor: "LightGray",
+        //   color: "#51565d",
+        // }, _.get(this.props.styles, 'calendar', {})]}
+        style={{
           fontSize: "18px",
           border: "1px solid",
           minWidth: "300px",
           position: "relative",
           borderColor: "LightGray",
           color: "#51565d",
-        }, _.get(this.props.styles, 'calendar', {})]}
+        }}
       >
         <div className="calendar-header">
           <div
@@ -561,26 +570,26 @@ export default class Calendar extends React.Component {
         </div>
         { this.state.showFooter && 
           <div className="calendar-footer">
-            <div css={css`
-              font-size: 14px;
-              padding-left: 5px;
-              text-align: left;
-            `}>
+            <div style={{
+              fontSize: '14px',
+              paddingLeft: '5px',
+              textAlign: 'left',
+            }}>
               All times shown your timezone ({moment().tz(this.state.userTimezone).format("z")})
             </div>
-            <div css={css`
-              vertical-align: top;
-              margin-left: 3px;
-              margin-right: 3px;
-            `}>
-              <a href={"https://calendar.google.com/calendar/r?cid=" + this.props.calendarId} target="_blank" css={css`
-                font-size: 14px;
-                text-decoration: none;
-                color: inherit;
-                &:hover {
-                  text-decoration: underline;
+            <div style={{
+              verticalAlign: 'top',
+              marginLeft: '3px',
+              marginRight: '3px',
+            }}>
+              <a href={"https://calendar.google.com/calendar/r?cid=" + this.props.calendarId} target="_blank" style={{
+                fontSize: '14px',
+                textDecoration: 'none',
+                color: 'inherit',
+                '&:hover': {
+                  text-decoration: 'underline',
                 }
-              `}>
+              }}>
                 &#43; Add Calendar
               </a>
             </div>

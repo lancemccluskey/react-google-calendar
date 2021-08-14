@@ -7,7 +7,7 @@ import moment from "moment-timezone";
 
 import "./index.css";
 
-import { css, jsx } from '@emotion/react'
+// import { css, jsx } from '@emotion/react'
 
 import Tooltip from "./tooltip";
 
@@ -43,54 +43,54 @@ export default class MultiEvent extends React.Component {
   }
 
   render() {
-    const leftArrow = css`
-      margin-left: 8px;
-      border-top-left-radius: 0px;
-      border-bottom-left-radius: 0px;
-      &:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0; 
-        width: 0;
-        height: 0;
-        border-right: 8px solid ${this.state.color};
-        border-top: 13px solid transparent;
-        border-bottom: 13px solid transparent;
+    const leftArrow = {
+      marginLeft: '8px',
+      borderTopLeftRadius: '0px',
+      borderBottomLeftRadius: '0px',
+      '&:before': {
+        content: '',
+        position: absolute,
+        left: 0,
+        bottom: 0, 
+        width: 0,
+        height: 0,
+        borderRight: `8px solid ${this.state.color}`,
+        borderTop: '13px solid transparent',
+        borderBottom: '13px solid transparent',
+      },
+      '&:hover::before': {
+        cursor: pointer,
+        borderRightColor: `${this.state.darkColor}`,
       }
-      &:hover::before {
-        cursor: pointer;
-        border-right-color: ${this.state.darkColor};
-      }
-    `;
+    };
 
-    const rightArrow = css`
-      margin-right: 8px;
-      border-top-right-radius: 0px;
-      border-bottom-right-radius: 0px;
-      &:after {
-        content: "";
-        position: absolute;
-        right: 0;
-        bottom: 0; 
-        width: 0;
-        height: 0;
-        border-left: 8px solid ${this.state.color};
-        border-top: 13px solid transparent;
-        border-bottom: 13px solid transparent;
+    const rightArrow = {
+      marginRight: '8px',
+      borderTopRightRadius: '0px',
+      borderBottomRightRadius: '0px',
+      '&:after': {
+        content: '',
+        position: absolute,
+        right: 0,
+        bottom: 0, 
+        width: 0,
+        height: 0,
+        borderLeft: `8px solid ${this.state.color}`,
+        borderTop: '13px solid transparent',
+        borderBottom: '13px solid transparent',
+      },
+      '&:hover::after': {
+        cursor: pointer,
+        borderLeftColor: `${this.state.darkColor}`,
       }
-      &:hover::after {
-        cursor: pointer;
-        border-left-color: ${this.state.darkColor};
-      }
-    `;
+    };
 
     return (
       <div 
         className="event"
         tabIndex="0"
         onBlur={this.closeTooltip}
-        css={css`
+        style={css`
           width: ${'calc(' + this.props.length + '00% + ' + (this.props.length - 1) + 'px)'};
           &:focus {
             outline: none;
@@ -101,7 +101,7 @@ export default class MultiEvent extends React.Component {
         <Manager>
           <Reference>
             {({ref}) => (
-              <div css={[css`
+              <div style={[css`
                   width: ${'calc(100% - ' + 8 * (this.props.arrowLeft + this.props.arrowRight) + 'px)'};
                   border-radius: 3px;
                   background: ${this.state.color};
@@ -111,13 +111,12 @@ export default class MultiEvent extends React.Component {
                   ${this.props.arrowLeft && leftArrow}
                   ${this.props.arrowRight && rightArrow}
                 `, this.props.multiEventStyles]}
-
                 onClick={this.toggleTooltip}
                 ref={ref}
               >
                 <div 
                   className="event-text" 
-                  css={{
+                  style={{
                     padding: '3px 0px',
                     color: 'white',
                     marginLeft: this.props.arrowLeft ? '2px' : '5px',
@@ -129,13 +128,12 @@ export default class MultiEvent extends React.Component {
                     '&:hover': {
                       cursor: 'pointer',
                     },
-                    
                   }}
                 >
                   {
                     this.state.allDay ? "" : this.state.startTime.format("h:mma ")
                   }
-                  <span css={{fontWeight: "500"}}>
+                  <span style={{fontWeight: "500"}}>
                     {this.props.name}
                   </span>
                 </div>
